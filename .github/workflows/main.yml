@@ -47,3 +47,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo Complete.
+
+      - name: Run code
+        run: ls
