@@ -27,10 +27,23 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Try to Print data!
-
+        run: echo Start Deployment!
+      - name: decrypt
+        run: |
+          mkdir $HOME/secrets
+          gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" \
+          --output $HOME/secrets/key google_compute_engine.gpg
+        env:
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
+      - name: test key
+        run: ls $HOME/secrets/key
+      - name: chmod
+        run: chmod 600 $HOME/secrets/key
+      - name: ssh
+        run: ssh -o StrictHostKeyChecking=no -i $HOME/secrets/key yi-chunsung@34.69.64.194 "cd github_actions_testing/;git pull"  
+      
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project.
+          echo Complete.
