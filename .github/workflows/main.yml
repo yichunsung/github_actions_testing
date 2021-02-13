@@ -29,12 +29,12 @@ jobs:
       - name: Run a one-line script
         run: echo Start Deployment!
       - name: decrypt
+        env:
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
         run: |
           mkdir $HOME/secrets
           gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" \
           --output $HOME/secrets/key google_compute_engine.gpg
-        env:
-          PASSPHRASE: ${{ secrets.PASSPHRASE }}
       - name: test key
         run: ls $HOME/secrets/key
       - name: chmod
