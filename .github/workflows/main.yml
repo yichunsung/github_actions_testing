@@ -40,7 +40,7 @@ jobs:
       - name: chmod
         run: chmod 700 $HOME/secrets/key
       - name: ssh
-        run: ssh -o StrictHostKeyChecking=no -i $HOME/secrets/key yi-chunsung@34.69.64.194 "cd github_actions_testing/;git pull"  
+        run: ssh -o StrictHostKeyChecking=no -i $HOME/secrets/key ycsung.r@34.69.64.194 "cd github_actions_testing/;git pull"  
       
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
