@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir $HOME/secrets
           gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" \
-          --output $HOME/secrets/key google_compute_engine.gpg
+          --output $HOME/secrets/key github_deployment-key.gpg
       - name: test key
         run: ls $HOME/secrets/key
       - name: chmod
