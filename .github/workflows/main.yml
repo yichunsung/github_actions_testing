@@ -51,17 +51,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Start Deployment!
-      - name: decrypt
-        env:
-          PASSPHRASE: ${{ secrets.PASSPHRASE }}
-        run: |
-          mkdir $HOME/secrets
-          gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" \
-          --output $HOME/secrets/key github_deployment-key.gpg
-      - name: test key
-        run: ls $HOME/secrets/key
-      - name: chmod
-        run: chmod 700 $HOME/secrets/key
+      
       - name: ssh
         run: ssh -o StrictHostKeyChecking=no -i $HOME/secrets/key ycsung.r@34.69.64.194 "cd github_actions_testing/;git pull"  
       
