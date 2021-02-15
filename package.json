@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/yichunsung/github_actions_testing/issues"
   },
-  "homepage": "https://github.com/yichunsung/github_actions_testing#readme"
+  "homepage": "https://github.com/yichunsung/github_actions_testing#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
