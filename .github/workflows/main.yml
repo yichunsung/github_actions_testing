@@ -20,8 +20,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
       - name: Run start message script
         run: echo ==== Hello, Netpute! Start Deployment. ====
+
+      - name: ssh
+        run: ssh -o StrictHostKeyChecking=no -i $HOME/secrets/key ycsung.r@34.69.64.194 "cd github_actions_testing/;sudo docker ps -a"  
 
   # This workflow contains a single job called "build"
   build:
