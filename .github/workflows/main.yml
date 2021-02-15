@@ -25,7 +25,16 @@ jobs:
 
       - name: Run start message script
         run: echo ==== Hello, Netpute! Start Deployment. ====
-
+      - name: decrypt
+        env:
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
+        run: |
+          mkdir $HOME/secrets
+          gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" \
+          --output $HOME/secrets/key github_deployment-key.gpg
+      - name: chmod
+        run: chmod 700 $HOME/secrets/key
+        
       - name: ssh
         run: ssh -o StrictHostKeyChecking=no -i $HOME/secrets/key ycsung.r@34.69.64.194 "cd github_actions_testing/;sudo docker ps -a"  
 
