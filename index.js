@@ -10,6 +10,11 @@ app.get('/hello', function(req, res){
 	res.send('<h1>Hello page lalalal yoyoyo</h1>');
 });
 
+app.get('/goo', function(req, res){
+	res.send('<h1> >_< </h1>');
+});
+
+
 let port = 8000;
 
 app.listen(port, function(){
