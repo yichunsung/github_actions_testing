@@ -25,7 +25,7 @@ services:
     image: actions-run
     restart: always
     environment:
-      VIRTUAL_HOST: netpute-test.elk-tree.site
-      LETSENCRYPT_HOST: netpute-test.elk-tree.site
+      VIRTUAL_HOST: actions-test.elk-tree.site
+      LETSENCRYPT_HOST: actions-test.elk-tree.site
       LETSENCRYPT_EMAIL: ycsung.r@gmail.com
       NODE_ENV: production
