@@ -28,4 +28,5 @@ services:
       VIRTUAL_HOST: actions-test.elk-tree.site
       LETSENCRYPT_HOST: actions-test.elk-tree.site
       LETSENCRYPT_EMAIL: ycsung.r@gmail.com
+      NETWORK_ACCESS: internal
       NODE_ENV: production
