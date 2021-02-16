@@ -1,0 +1,31 @@
+version: "2"
+services:
+  nginx-proxy:
+    container_name: nginx-docker
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "/etc/nginx/certs"
+    restart: always
+  letsencrypt-nginx-proxy-companion:
+    container_name: letsencrypt-docker
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - "nginx-proxy"
+    restart: always
+  client:
+    container_name: testing-run
+    image: actions-run
+    restart: always
+    environment:
+      VIRTUAL_HOST: netpute-test.elk-tree.site
+      LETSENCRYPT_HOST: netpute-test.elk-tree.site
+      LETSENCRYPT_EMAIL: ycsung.r@gmail.com
+      NODE_ENV: production
