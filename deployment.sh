@@ -1,6 +1,7 @@
 echo "Rebuild the image"
 sudo docker build . -t actions-run
 
+# https://forums.docker.com/t/how-to-remove-none-images-after-building/7050/3
 echo "Remvoe all old images"
 sudo docker rmi $(sudo docker images -f "dangling=true" -q --no-trunc)
 #echo "Restart container"
